@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  background: rgba(0, 0, 0, .1);
+  background: rgba(0, 0, 0, 0.0);
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
@@ -21,6 +21,7 @@
   margin: 0;
   transform-style: preserve-3d;
   perspective: 500px;
+  margin-left: -105px;
 }
 
 .figure {

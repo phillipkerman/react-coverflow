@@ -81,12 +81,13 @@ class Coverflow extends Component {
         this.refs[figureID].addEventListener(event, HandleAnimationState.bind(this));
       }
     });
-    
+    /*
     const eventListener = window && window.addEventListener;
     
     if(eventListener) {
       window.addEventListener('resize', this.updateDimensions.bind(this));
     }
+    */
   }
 
   componentWillReceiveProps(nextProps) {
@@ -148,9 +149,9 @@ class Coverflow extends Component {
           { width: `${width}px`, height: `${height}px` }
         }
         onWheel={enableScroll ? this._handleWheel.bind(this) : null}
-        onTouchStart={this._handleTouchStart.bind(this)}
-        onTouchMove={this._handleTouchMove.bind(this)}
-        onKeyDown={this._keyDown.bind(this)}
+      //  onTouchStart={this._handleTouchStart.bind(this)}
+      //  onTouchMove={this._handleTouchMove.bind(this)}
+       // onKeyDown={this._keyDown.bind(this)}
         tabIndex="-1"
       >
         <div className={styles.coverflow}>
@@ -239,7 +240,7 @@ class Coverflow extends Component {
 
   _handleFigureClick = (index, action, e) => {
     if (!this.props.clickable) {
-      e.preventDefault();
+      if ( e ) e.preventDefault();
       return;
     }
 
@@ -254,7 +255,7 @@ class Coverflow extends Component {
       this._removePointerEvents();
     } else {
       // Move to the selected figure
-      e.preventDefault();
+      if ( e )  e.preventDefault();
       const { displayQuantityOfSide } = this.props;
       const { width } = this.state;
       let baseWidth = width / (displayQuantityOfSide * 2 + 1);
@@ -346,10 +347,10 @@ class Coverflow extends Component {
       let func = null;
 
       if (sign > 0 && this._hasPrevFigure()) {
-        e.preventDefault();
+        if ( e )  e.preventDefault();
         func = this._handlePrevFigure();
       } else if (sign < 0 && this._hasNextFigure()) {
-        e.preventDefault();
+        if ( e )  e.preventDefault();
         func = this._handleNextFigure();
       }
 
@@ -365,7 +366,7 @@ class Coverflow extends Component {
   }
 
   _handleTouchMove(e) {
-    e.preventDefault();
+    if ( e ) e.preventDefault();
     const { displayQuantityOfSide } = this.props;
     const { width } = this.state;
 
